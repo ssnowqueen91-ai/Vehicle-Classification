@@ -1,7 +1,28 @@
 import streamlit as st
 from PIL import Image
 import numpy as np
-from tensorflow.keras.models import load_model
+from tensorflow as tf
+import os
+import urllib.request
+ @st.cache_resource
+def load_my_model():
+   model_path = "vehicle_classification_model.keras"
+
+   if not os.path.exits(model.path):
+      FILE_ID = "1n_KfcHlRHBm9xKC8bynnVLIwIy9VbwhV"
+      URL = f"https://docs.google.com/uc?export=download&id={FILE_ID}"
+
+      with st.spinner("Downloading AI Model (45MB)... Please waite..."):
+         try:
+            opener = urllib.request.build_opener()
+            opener.addheaders = [('User-agent','Mozilla/5.0')]
+            urllib.request.install_opener(opener)
+            urllib.request.urlretrieve(URL,model_path)
+   except Exception as e:
+st.error(f"Error downloading model: {e}")
+
+return tf.keras.models.load_model(model_path)
+  
 
 # Load Model
 model = load_model("vehicle_classification_model.keras")
