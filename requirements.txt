@@ -1,5 +1,4 @@
-pip freeze >requirements.txt
 streamlit
-tensorflow=2.16.1
+tensorflow==2.16.1
 pillow
 numpy
