@@ -19,10 +19,10 @@ def load_my_model():
             opener.addheaders = [('User-agent','Mozilla/5.0')]
             urllib.request.install_opener(opener)
             urllib.request.urlretrieve(URL,model_path)
-   except Exception as e:
-st.error(f"Error downloading model: {e}")
+         except Exception as e:
+            st.error(f"Error downloading model: {e}")
 
-return tf.keras.models.load_model(model_path)
+    return tf.keras.models.load_model(model_path)
   
 
 # Load Model
