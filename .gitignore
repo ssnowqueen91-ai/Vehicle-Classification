@@ -1,0 +1,6 @@
+# Machine Learning Models
+*.keras
+*.h5
+*.tflite
+#Dataset
+VehicleImage/
