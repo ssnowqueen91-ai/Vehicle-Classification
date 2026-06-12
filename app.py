@@ -4,6 +4,7 @@ import numpy as np
 import tensorflow as tf
 import os
 import urllib.request
+
  @st.cache_resource
 def load_my_model():
    model_path = "vehicle_classification_model.keras"
