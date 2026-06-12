@@ -23,7 +23,6 @@ def load_my_model():
             st.error(f"Error downloading model: {e}")
 
     return tf.keras.models.load_model(model_path)
-  
 
 # Load Model
 model = load_model("vehicle_classification_model.keras")
