@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 import numpy as np
-from tensorflow as tf
+import tensorflow as tf
 import os
 import urllib.request
  @st.cache_resource
