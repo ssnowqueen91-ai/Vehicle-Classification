@@ -14,7 +14,7 @@ def load_my_model():
       URL = f"https://docs.google.com/uc?export=download&id={FILE_ID}"
 
       with st.spinner("Downloading AI Model (45MB)... Please waite..."):
-         try:
+        try:
             opener = urllib.request.build_opener()
             opener.addheaders = [('User-agent','Mozilla/5.0')]
             urllib.request.install_opener(opener)
@@ -23,7 +23,6 @@ def load_my_model():
             st.error(f"Error downloading model: {e}")
 
     return tf.keras.models.load_model(model_path)
-  
 
 # Load Model
 model = load_model("vehicle_classification_model.keras")
