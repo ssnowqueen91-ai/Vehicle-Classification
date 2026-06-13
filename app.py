@@ -48,7 +48,7 @@ if uploaded_file is not None:
     # Preprocess Image
     img = image.resize((180, 180))  
     img = np.array(img)
-    #img = img / 255.0
+    img = img / 255.0
     img = np.expand_dims(img, axis=0)
 
     # Prediction
@@ -57,3 +57,5 @@ if uploaded_file is not None:
     st.write("Shape:", prediction.shape)
     predicted_index = np.argmax(prediction[0])
     predicted_class = class_names[np.argmax(prediction)]
+
+    st.success(f"Prediction:{predicted_class}")
