@@ -87,8 +87,7 @@ def load_my_model():
                 
     return tf.keras.models.load_model(model_path)
 
-# Load Model
-model = load_model("vehicle_classification_model.keras")
+model = load_my_model()
 
 # Class Names
 class_names = ["bus", "cars", "motorcycle"]
