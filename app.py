@@ -28,6 +28,19 @@ model = load_my_model()
 
 # Class Names
 class_names = ["bus", "cars", "motorcycle"]
+# --- Sidebar categories display ---
+with st.sidebar:
+    st.header("🚘 Supported Vehicles")
+    st.write("Our AI Model can classify the following vehicle types:")
+    
+    st.markdown("""
+    * 🚌 **Bus** 
+    * 🚗 **Cars** 
+    * 🏍️ **Motorcycle**
+    """)
+    
+    st.divider() 
+    st.caption("Vehicle Classification Project v1.0")
 st.title("Vehicle Classification App")
 
 uploaded_file = st.file_uploader(
