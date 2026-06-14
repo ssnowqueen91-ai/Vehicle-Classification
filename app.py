@@ -86,9 +86,9 @@ if uploaded_file is not None:
     confidence = probabilities[predicted_index]*100
     
     st.success(f"🎉 **Result: This is a {predicted_class.upper()}!** (Confidence: {confidence:.2f}%)")
-    st.write("Raw prediction:", prediction)
-    st.write("Shape:", prediction.shape)
-    predicted_index = np.argmax(prediction[0])
-    predicted_class = class_names[np.argmax(prediction)]
+    st.write("Raw prediction:", prediction_raw)
+    st.write("Shape:", prediction_raw.shape)
+    predicted_index = np.argmax(probabilities)
+    predicted_class = class_names[np.argmax(predicted_index)]
 
     st.success(f"Prediction:{predicted_class}")
