@@ -88,7 +88,5 @@ if uploaded_file is not None:
     st.success(f"🎉 **Result: This is a {predicted_class.upper()}!** (Confidence: {confidence:.2f}%)")
     st.write("Raw prediction:", prediction_raw)
     st.write("Shape:", prediction_raw.shape)
-    predicted_index = np.argmax(probabilities)
-    predicted_class = class_names[np.argmax(predicted_index)]
 
     st.success(f"Prediction:{predicted_class}")
