@@ -70,7 +70,7 @@ if uploaded_file is not None:
     prediction = model.predict(img)
     import pandas as pd
     chart_data = pd.DataFrame(
-        prediction[0],            
+        prediction.T,            
         index=class_names,        
         columns=["Probability"]   
     )
