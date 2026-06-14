@@ -65,10 +65,14 @@ if uploaded_file is not None:
     img = np.expand_dims(img, axis=0)
 
     # Prediction
-    prediction = model.predict(img)
+    prediction_raw= model.predict(img)
+    import numpy as np
+    logits = prediction_raw[0]
+    exp_logits = np.exp(logits - np.max(logits))
+    probabilities = exp_logits /np.sum(exp_logits)
     import pandas as pd
     chart_data = pd.DataFrame(
-        prediction.T,            
+        probabilities,            
         index=class_names,        
         columns=["Probability"]   
     )
@@ -77,10 +81,11 @@ if uploaded_file is not None:
     st.write("📊 **Prediction Probability:**")
     st.bar_chart(chart_data)
 
-    predicted_index = np.argmax(prediction[0])
+    predicted_index = np.argmax(probabilities)
     predicted_class = class_names[predicted_index]
+    confidence = probabilities[predicted_index]*100
     
-    st.success(f"🎉 **Result: This is a {predicted_class.upper()}!** (Confidence: {prediction[0][predicted_index]*100:.2f}%)")
+    st.success(f"🎉 **Result: This is a {predicted_class.upper()}!** (Confidence: {confidence:.2f}%)")
     st.write("Raw prediction:", prediction)
     st.write("Shape:", prediction.shape)
     predicted_index = np.argmax(prediction[0])
