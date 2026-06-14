@@ -66,23 +66,26 @@ if uploaded_file is not None:
 
     # Prediction
     prediction = model.predict(img)
-    # Prediction
-    prediction = model.predict(img)
+    import scipy
+    import numpy as np
     import pandas as pd
+    exp_preds = np.exp(prediction[0] - np.max(prediction[0]))
+    probabilities = exp_preds / exp_preds.sum()
     chart_data = pd.DataFrame(
-        prediction.T,            
-        index=class_names,        
-        columns=["Probability"]   
+        probabilities,
+        index=class_names,
+        columns=["Probability"]
     )
-    
+
     #  Bar Chart 
     st.write("📊 **Prediction Probability:**")
     st.bar_chart(chart_data)
 
-    predicted_index = np.argmax(prediction[0])
+    predicted_index = np.argmax(probabilities)
     predicted_class = class_names[predicted_index]
+    confidence_score = probabilities[predicted_index]*100
     
-    st.success(f"🎉 **Result: This is a {predicted_class.upper()}!** (Confidence: {prediction[0][predicted_index]*100:.2f}%)")
+    st.success(f"🎉 **Result: This is a {predicted_class.upper()}!** (Confidence: {confidence_score:.2f]}%)")
     st.write("Raw prediction:", prediction)
     st.write("Shape:", prediction.shape)
     predicted_index = np.argmax(prediction[0])
